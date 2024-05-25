@@ -1,0 +1,1 @@
+export const WATERMARK = 12345n;

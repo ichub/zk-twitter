@@ -1,9 +1,23 @@
-import { useEffect } from 'react';
+export type APIResult<T> = {
+  success: true;
+  data: T;
+  error?: never;
+} | {
+  success: false;
+  data?: never;
+  error: string;
+};
 
-export function useAsyncEffect(asyncFunc: () => Promise<void>, deps: any[]) {
-  useEffect(() => {
-    asyncFunc();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [asyncFunc, ...deps]);
+export function err<T>(error: string): APIResult<T> {
+  return {
+    success: false,
+    error,
+  };
 }
 
+export function succ<T>(t: T): APIResult<T> {
+  return {
+    success: true,
+    data: t
+  };
+}
