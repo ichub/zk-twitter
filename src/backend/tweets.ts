@@ -33,6 +33,7 @@ export async function getAllTweets(): Promise<
   const set = await kv.smembers<SerializedPCD<PCD<PODPCDClaim, PODPCDProof>>[]>(
     "posts"
   );
+
   return set;
 }
 

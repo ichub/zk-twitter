@@ -35,10 +35,10 @@ async function handlePollFeed(
       {
         type: PCDActionType.DeleteFolder,
         folder: FOLDER_NAME,
-        recursive: false
+        recursive: true
       },
       {
-        type: PCDActionType.AppendToFolder,
+        type: PCDActionType.ReplaceInFolder,
         folder: FOLDER_NAME,
         pcds: await getAllTweets()
       }
@@ -55,8 +55,8 @@ function handleListFeed(): ListFeedsResponseValue {
         description: "Twitter",
         permissions: [
           { folder: FOLDER_NAME, type: PCDPermissionType.AppendToFolder },
-          { folder: FOLDER_NAME, type: PCDPermissionType.AppendToFolder },
-          { folder: FOLDER_NAME, type: PCDPermissionType.AppendToFolder }
+          { folder: FOLDER_NAME, type: PCDPermissionType.DeleteFolder },
+          { folder: FOLDER_NAME, type: PCDPermissionType.ReplaceInFolder }
         ],
         credentialRequest: {
           signatureType: "sempahore-signature-pcd",
