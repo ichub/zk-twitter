@@ -3,11 +3,12 @@
 import { WATERMARK } from "@/shared/shared";
 import { ZResult, err, getErrorMessage, succ } from "@/shared/util";
 import { PopupActionResult } from "@pcd/passport-interface";
-import { ZKEdDSAEventTicketPCD } from "@pcd/zk-eddsa-event-ticket-pcd";
 import { ETHBERLIN04 } from "@pcd/zuauth";
 import { authenticate } from "@pcd/zuauth/server";
 import { kv } from "@vercel/kv";
 import { makePodTweet, saveTweet } from "./tweets";
+import { makeToken } from "./users";
+import { checkToken } from "./users";
 
 export interface AuthResult {
   token: string;
@@ -48,14 +49,4 @@ export async function createPost(
 
   await saveTweet(await makePodTweet(post));
   return succ(post);
-}
-
-const CORRECT_TOKEN = "token";
-
-function makeToken(pcd: ZKEdDSAEventTicketPCD): string {
-  return CORRECT_TOKEN;
-}
-
-function checkToken(token: string): boolean {
-  return token === CORRECT_TOKEN;
 }

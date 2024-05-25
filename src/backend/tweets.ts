@@ -27,11 +27,13 @@ export async function makePodTweet(
   return await PODPCDPackage.serialize(newPOD);
 }
 
+const POSTS_KV_KEY = "posts";
+
 export async function getAllTweets(): Promise<
   SerializedPCD<PCD<PODPCDClaim, PODPCDProof>>[]
 > {
   const set = await kv.smembers<SerializedPCD<PCD<PODPCDClaim, PODPCDProof>>[]>(
-    "posts"
+    POSTS_KV_KEY
   );
 
   return set;
@@ -40,9 +42,9 @@ export async function getAllTweets(): Promise<
 export async function saveTweet(
   postPCD: SerializedPCD<PCD<PODPCDClaim, PODPCDProof>>
 ): Promise<void> {
-  await kv.sadd("posts", JSON.stringify(postPCD));
+  await kv.sadd(POSTS_KV_KEY, JSON.stringify(postPCD));
 }
 
 export async function deleteAllTweets() {
-  await kv.del("posts");
+  await kv.del(POSTS_KV_KEY);
 }
