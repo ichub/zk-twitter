@@ -4,10 +4,10 @@
 - tokens should be unique per user
 - make UI pretty
 - landing page that explains what's going on
-- add link to subscribe to the feed
 
 #### done
 
+- add link to subscribe to the feed
 - deploy to production
 - associate domain with production deployed app
 - purchase domain

@@ -37,3 +37,9 @@ textarea {
   margin: 2px;
   color: black;
 }
+
+button {
+  border: 1px solid white;
+  border-radius: 2px;
+  padding: 4px 8px;
+}
