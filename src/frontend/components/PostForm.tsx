@@ -11,6 +11,7 @@ export function PostForm({ loginState }: { loginState: LoginState }) {
   const [title, setTitle] = useState<string>("");
   const [imageUrl, setImageUrl] = useState<string>("");
   const [content, setContent] = useState<string>("");
+  const [posting, setIsPosting] = useState(false);
 
   const validateInput = useCallback(() => {
     if (title.length === 0) {
@@ -38,10 +39,16 @@ export function PostForm({ loginState }: { loginState: LoginState }) {
         return;
       }
 
+      setIsPosting(true);
       await createPost(loginState.token, { title, imageUrl, content });
       alert("created post");
+      setContent("");
+      setImageUrl("");
+      setTitle("");
     } catch (e) {
       console.error(e);
+    } finally {
+      setIsPosting(false);
     }
   }, [validateInput, loginState.token, title, imageUrl, content]);
 
@@ -64,7 +71,9 @@ export function PostForm({ loginState }: { loginState: LoginState }) {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <Button onClick={onCreateClick}>Post</Button>
+      <Button disabled={posting} onClick={onCreateClick}>
+        {posting ? "Posting..." : "Post"}
+      </Button>
     </div>
   );
 }
