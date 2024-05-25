@@ -1,12 +1,12 @@
 #### todo
 
-- watermark should be unique per user
-- tokens should be unique per user
 - make UI pretty
 - landing page that explains what's going on
 
 #### done
 
+- tokens should be unique per user
+- unique watermark for the app
 - add link to subscribe to the feed
 - deploy to production
 - associate domain with production deployed app

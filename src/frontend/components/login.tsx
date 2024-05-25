@@ -11,7 +11,7 @@ const LOGIN_CONFIG: ZuAuthArgs = {
   fieldsToReveal: {
     revealAttendeeSemaphoreId: true
   },
-  watermark: WATERMARK,
+  watermark: WATERMARK.toString(),
   config: ETHBERLIN04,
   returnUrl: "http://localhost:4001"
 };
