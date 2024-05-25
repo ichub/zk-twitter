@@ -1,6 +1,9 @@
+"use client";
+
 import { createPost } from "@/backend/backend";
 import { useCallback, useState } from "react";
 import { LoginState } from "../useLoginState";
+import { Button } from "@/components/ui/button";
 
 export function PostForm({ loginState }: { loginState: LoginState }) {
   const [title, setTitle] = useState<string>("");
@@ -40,7 +43,7 @@ export function PostForm({ loginState }: { loginState: LoginState }) {
           onChange={(e) => setContent(e.target.value)}
         />
         <br />
-        <button onClick={onCreateClick}>create</button>
+        <Button onClick={onCreateClick}>create</Button>
       </div>
     </div>
   );

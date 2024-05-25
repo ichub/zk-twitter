@@ -6,12 +6,13 @@ import { PostForm } from "@/frontend/components/PostForm";
 import { SubscribeButton } from "@/frontend/components/SubscribeButton";
 import { Login } from "@/frontend/components/login";
 import { LoginState } from "@/frontend/useLoginState";
+import "./globals.css";
 
 export default function Home() {
   const { loginState } = useCtx();
 
   return (
-    <div>
+    <div className="">
       ZK TWITTER
       {loginState ? (
         <LoggedinView loginState={loginState} />

@@ -6,6 +6,7 @@ import { ZResult, err, getErrorMessage } from "@/shared/util";
 import { ETHBERLIN04, ZuAuthArgs, zuAuthPopup } from "@pcd/zuauth";
 import { useState } from "react";
 import { useCtx } from "../AppContext";
+import { Button } from "@/components/ui/button";
 
 const LOGIN_CONFIG: ZuAuthArgs = {
   fieldsToReveal: {
@@ -24,7 +25,7 @@ export function Login() {
 
   return (
     <div>
-      <button
+      <Button
         onClick={async () => {
           try {
             const popupResult = await zuAuthPopup(LOGIN_CONFIG);
@@ -46,7 +47,7 @@ export function Login() {
         }}
       >
         login
-      </button>
+      </Button>
 
       {authResult && (
         <>

@@ -1,14 +1,17 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
 import { useCtx } from "../AppContext";
 
 export function Logout() {
   const ctx = useCtx();
   return (
-    <button
+    <Button
       onClick={() => {
         ctx.update({ loginState: undefined });
       }}
     >
       logout
-    </button>
+    </Button>
   );
 }
