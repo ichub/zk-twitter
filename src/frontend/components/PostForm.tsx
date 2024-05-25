@@ -12,14 +12,38 @@ export function PostForm({ loginState }: { loginState: LoginState }) {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [content, setContent] = useState<string>("");
 
+  const validateInput = useCallback(() => {
+    if (title.length === 0) {
+      return "Please enter a title";
+    }
+
+    if (content.length === 0) {
+      return "Please post something interesting (:";
+    }
+
+    if (imageUrl.length !== 0) {
+      try {
+        const url = new URL(imageUrl);
+      } catch (e) {
+        return "The image URL is optional. Please enter a valid URL if you want to post an image.";
+      }
+    }
+  }, [content, imageUrl, title]);
+
   const onCreateClick = useCallback(async () => {
     try {
+      const error = validateInput();
+      if (error) {
+        alert(error);
+        return;
+      }
+
       await createPost(loginState.token, { title, imageUrl, content });
       alert("created post");
     } catch (e) {
       console.error(e);
     }
-  }, [loginState.token, title, imageUrl, content]);
+  }, [validateInput, loginState.token, title, imageUrl, content]);
 
   return (
     <div className="flex flex-col gap-2">
@@ -31,7 +55,7 @@ export function PostForm({ loginState }: { loginState: LoginState }) {
       />
       <Input
         type="text"
-        placeholder="image url"
+        placeholder="image url (optional)"
         value={imageUrl}
         onChange={(e) => setImageUrl(e.target.value)}
       />
