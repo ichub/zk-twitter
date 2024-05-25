@@ -22,7 +22,7 @@ function LoggedinView({ loginState }: { loginState: LoginState }) {
     <div>
       your token is: {loginState.token} <Logout />
       <br />
-      <PostForm />
+      <PostForm loginState={loginState} />
     </div>
   );
 }

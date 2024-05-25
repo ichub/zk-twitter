@@ -6,6 +6,7 @@ import { PopupActionResult } from "@pcd/passport-interface";
 import { ZKEdDSAEventTicketPCD } from "@pcd/zk-eddsa-event-ticket-pcd";
 import { ETHBERLIN04 } from "@pcd/zuauth";
 import { authenticate } from "@pcd/zuauth/server";
+import { kv } from "@vercel/kv";
 
 export interface AuthResult {
   token: string;
@@ -36,8 +37,12 @@ export async function auth(
   }
 }
 
-export async function createPost(token: string, post: Post): Promise<ZResult> {
-  return succ(undefined);
+export async function createPost(
+  token: string,
+  post: Post
+): Promise<ZResult<Post>> {
+  kv.sadd("posts", post);
+  return succ(post);
 }
 
 const CORRECT_TOKEN = "token";
