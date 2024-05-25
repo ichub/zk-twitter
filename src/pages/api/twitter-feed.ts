@@ -7,6 +7,8 @@ import {
 import { PCDActionType, PCDPermissionType } from "@pcd/pcd-collection";
 import NextCors from "nextjs-cors";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { APP_URL } from "@/backend/env";
+import urlJoin from "url-join";
 
 export const FOLDER_NAME = "ZK Twitter";
 
@@ -65,6 +67,6 @@ function handleListFeed(): ListFeedsResponseValue {
       }
     ],
     providerName: FOLDER_NAME,
-    providerUrl: "http://localhost:4001/api/twitter-feed"
+    providerUrl: urlJoin(APP_URL, "/api/twitter-feed")
   };
 }

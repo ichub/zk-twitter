@@ -23,6 +23,7 @@
     "nextjs-cors": "^2.2.0",
     "react": "^18",
     "react-dom": "^18",
+    "url-join": "^5.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
