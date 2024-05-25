@@ -19,8 +19,6 @@ export async function getTokenUser(
 ): Promise<ZKEdDSAEventTicketPCD | undefined> {
   const user = await kv.get<SerializedPCD<ZKEdDSAEventTicketPCD>>(token);
 
-  console.log("user", user);
-
   if (user) {
     return await ZKEdDSAEventTicketPCDPackage.deserialize(user.pcd);
   }
