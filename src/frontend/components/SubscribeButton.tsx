@@ -13,7 +13,7 @@ export function SubscribeButton() {
         )}`;
       }}
     >
-      Add to Zupass
+      Subscribe to ZK Twitter on Zupass
     </Button>
   );
 }

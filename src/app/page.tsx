@@ -12,9 +12,9 @@ export default function Home() {
   const { loginState } = useCtx();
 
   return (
-    <div className="w-full bg-gray-200 h-full flex flex-col items-center justify-center">
-      <div className="w-[90%] h-1/2 bg-white p-8 rounded-xl shadow">
-        <div className="text-2xl font-bold text-center mb-4">ZK TWITTER</div>
+    <div className="w-full max-w-full overflow-hidden bg-gray-200 h-full flex flex-col items-center justify-center">
+      <div className="w-[500px] md:max-w-[90%] bg-white p-8 rounded-xl shadow">
+        <div className="text-2xl font-bold text-center mb-4">ZK Twitter</div>
 
         {loginState ? (
           <LoggedinView loginState={loginState} />
@@ -29,8 +29,8 @@ export default function Home() {
 function LoggedinView({ loginState }: { loginState: LoginState }) {
   return (
     <div className="flex flex-col gap-2">
-      <LogoutButton />
       <SubscribeButton />
+      <LogoutButton />
       <PostForm loginState={loginState} />
     </div>
   );
@@ -39,8 +39,8 @@ function LoggedinView({ loginState }: { loginState: LoginState }) {
 function LoggedOutView() {
   return (
     <div className="flex flex-col gap-2">
-      <LoginButton />
       <SubscribeButton />
+      <LoginButton />
     </div>
   );
 }

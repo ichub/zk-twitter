@@ -21,13 +21,17 @@ export function LoginButton() {
   const [authResult, setAuthResult] = useState<ZResult<AuthResult> | undefined>(
     undefined
   );
+  const [loggingIn, setLoggingIn] = useState(false);
+
   const ctx = useCtx();
 
   return (
     <Button
       className="w-full"
+      disabled={loggingIn}
       onClick={async () => {
         try {
+          setLoggingIn(true);
           const popupResult = await zuAuthPopup(LOGIN_CONFIG);
           const authValue = await auth(popupResult);
           if (authValue.success) {
@@ -43,10 +47,12 @@ export function LoginButton() {
           }
         } catch (e) {
           setAuthResult(err(getErrorMessage(e)));
+        } finally {
+          setLoggingIn(false);
         }
       }}
     >
-      Login to Post
+      {loggingIn ? "Logging in..." : "Login to Poast"}
     </Button>
   );
 }
