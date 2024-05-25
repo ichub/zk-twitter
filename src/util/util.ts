@@ -1,19 +1,21 @@
-export type ZResult<T> = {
-  success: true;
-  data: T;
-  error?: never;
-} | {
-  success: false;
-  data?: never;
-  error: string;
-};
+export type ZResult<T> =
+  | {
+      success: true;
+      data: T;
+      error?: never;
+    }
+  | {
+      success: false;
+      data?: never;
+      error: string;
+    };
 
 export function err<T>(error: string): ZResult<T> {
   console.error(`err: `, error);
 
   return {
     success: false,
-    error,
+    error
   };
 }
 

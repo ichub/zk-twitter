@@ -3,7 +3,6 @@
 import { AuthResult, auth } from "@/app/api/api";
 import { WATERMARK } from "@/util/shared";
 import { ZResult, err, getErrorMessage } from "@/util/util";
-import { ZKEdDSAEventTicketPCDPackage } from "@pcd/zk-eddsa-event-ticket-pcd";
 import { ETHBERLIN04, ZuAuthArgs, zuAuthPopup } from "@pcd/zuauth";
 import { useState } from "react";
 
@@ -29,15 +28,7 @@ export function Login() {
         onClick={async () => {
           try {
             const popupResult = await zuAuthPopup(LOGIN_CONFIG);
-            console.log(popupResult);
-            const zkProof = await ZKEdDSAEventTicketPCDPackage.deserialize(
-              JSON.parse((popupResult as any).pcdStr).pcd
-            );
-            const verified = await ZKEdDSAEventTicketPCDPackage.verify(zkProof);
-            console.log("verified", verified);
-
             const authValue = await auth(popupResult);
-            console.log(authValue);
             setAuthResult(authValue);
           } catch (e) {
             setAuthResult(err(getErrorMessage(e)));

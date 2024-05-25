@@ -1,6 +1,5 @@
 #### todo
 
-- environment variable for private key
 - environment variable for deployed url
 - ui for creating a new tweet
   - image field
@@ -18,5 +17,8 @@
 - purchase domain
 - associate domain with production deployed app
 - landing page that explains what's going on
+- deploy to production
 
 #### done
+
+- environment variable for private key
