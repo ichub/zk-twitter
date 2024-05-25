@@ -11,6 +11,12 @@ export interface AuthResult {
   token: string;
 }
 
+export interface Post {
+  title: string;
+  imageUrl: string;
+  content: string;
+}
+
 export async function auth(
   result: PopupActionResult
 ): Promise<ZResult<AuthResult>> {
@@ -28,6 +34,10 @@ export async function auth(
   } catch (e) {
     return err("authentication failed: " + getErrorMessage(e));
   }
+}
+
+export async function createPost(token: string, post: Post): Promise<ZResult> {
+  return succ(undefined);
 }
 
 const CORRECT_TOKEN = "token";

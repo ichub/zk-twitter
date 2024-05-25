@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthResult, auth } from "@/backend/auth";
+import { AuthResult, auth } from "@/backend/backend";
 import { WATERMARK } from "@/shared/shared";
 import { ZResult, err, getErrorMessage } from "@/shared/util";
 import { ETHBERLIN04, ZuAuthArgs, zuAuthPopup } from "@pcd/zuauth";

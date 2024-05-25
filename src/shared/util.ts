@@ -1,4 +1,4 @@
-export type ZResult<T> =
+export type ZResult<T = unknown> =
   | {
       success: true;
       data: T;
