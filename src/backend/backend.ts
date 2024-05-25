@@ -42,7 +42,11 @@ export async function createPost(
   token: string,
   post: Post
 ): Promise<ZResult<Post>> {
+  console.log("poasting XD");
+
   const user = await getTokenUser(token);
+
+  console.log("poasting", post, user);
 
   if (!user) {
     return err("invalid token");

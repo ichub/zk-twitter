@@ -1,3 +1,4 @@
+import { SerializedPCD } from "@pcd/pcd-types";
 import {
   ZKEdDSAEventTicketPCD,
   ZKEdDSAEventTicketPCDPackage
@@ -16,10 +17,12 @@ export async function makeAndSaveToken(
 export async function getTokenUser(
   token: string
 ): Promise<ZKEdDSAEventTicketPCD | undefined> {
-  const user = await kv.get<string>(token);
+  const user = await kv.get<SerializedPCD<ZKEdDSAEventTicketPCD>>(token);
+
+  console.log("user", user);
 
   if (user) {
-    return await ZKEdDSAEventTicketPCDPackage.deserialize(user);
+    return await ZKEdDSAEventTicketPCDPackage.deserialize(user.pcd);
   }
 
   return undefined;
