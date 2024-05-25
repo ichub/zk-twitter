@@ -7,6 +7,7 @@ import { ZKEdDSAEventTicketPCD } from "@pcd/zk-eddsa-event-ticket-pcd";
 import { ETHBERLIN04 } from "@pcd/zuauth";
 import { authenticate } from "@pcd/zuauth/server";
 import { kv } from "@vercel/kv";
+import { makePodTweet, saveTweet } from "./tweets";
 
 export interface AuthResult {
   token: string;
@@ -41,7 +42,11 @@ export async function createPost(
   token: string,
   post: Post
 ): Promise<ZResult<Post>> {
-  kv.sadd("posts", post);
+  if (!checkToken(token)) {
+    return err("invalid token");
+  }
+
+  await saveTweet(await makePodTweet(post));
   return succ(post);
 }
 

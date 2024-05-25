@@ -1,4 +1,4 @@
-import { getTestTweets } from "@/backend/testTweet";
+import { getAllTweets } from "@/backend/tweets";
 import {
   ListFeedsResponseValue,
   PollFeedRequest,
@@ -7,7 +7,6 @@ import {
 import { PCDActionType, PCDPermissionType } from "@pcd/pcd-collection";
 import NextCors from "nextjs-cors";
 import type { NextApiRequest, NextApiResponse } from "next";
-
 
 export const FOLDER_NAME = "ZK Twitter";
 
@@ -41,7 +40,7 @@ async function handlePollFeed(
       {
         type: PCDActionType.AppendToFolder,
         folder: FOLDER_NAME,
-        pcds: await getTestTweets()
+        pcds: await getAllTweets()
       }
     ]
   };
