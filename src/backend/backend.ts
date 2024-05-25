@@ -5,10 +5,9 @@ import { ZResult, err, getErrorMessage, succ } from "@/shared/util";
 import { PopupActionResult } from "@pcd/passport-interface";
 import { ETHBERLIN04 } from "@pcd/zuauth";
 import { authenticate } from "@pcd/zuauth/server";
-import { kv } from "@vercel/kv";
 import { makePodTweet, saveTweet } from "./tweets";
-import { makeToken } from "./users";
-import { checkToken } from "./users";
+import { makeAndSaveToken } from "./users";
+import { getTokenUser } from "./users";
 
 export interface AuthResult {
   token: string;
@@ -33,7 +32,7 @@ export async function auth(
       WATERMARK.toString(),
       ETHBERLIN04
     );
-    return succ({ token: makeToken(pcd) });
+    return succ({ token: await makeAndSaveToken(pcd) });
   } catch (e) {
     return err("authentication failed: " + getErrorMessage(e));
   }
@@ -43,10 +42,19 @@ export async function createPost(
   token: string,
   post: Post
 ): Promise<ZResult<Post>> {
-  if (!checkToken(token)) {
+  const user = await getTokenUser(token);
+
+  if (!user) {
     return err("invalid token");
   }
 
-  await saveTweet(await makePodTweet(post));
+  const commitment = user.claim.partialTicket.attendeeSemaphoreId;
+
+  if (!commitment) {
+    return err("user has no commitment");
+  }
+
+  await saveTweet(await makePodTweet(post, commitment));
+
   return succ(post);
 }

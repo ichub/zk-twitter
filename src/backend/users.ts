@@ -1,9 +1,28 @@
-import { ZKEdDSAEventTicketPCD } from "@pcd/zk-eddsa-event-ticket-pcd";
+import {
+  ZKEdDSAEventTicketPCD,
+  ZKEdDSAEventTicketPCDPackage
+} from "@pcd/zk-eddsa-event-ticket-pcd";
+import { kv } from "@vercel/kv";
+import { v4 as uuid } from "uuid";
 
-export function makeToken(pcd: ZKEdDSAEventTicketPCD): string {
-  return CORRECT_TOKEN;
+export async function makeAndSaveToken(
+  pcd: ZKEdDSAEventTicketPCD
+): Promise<string> {
+  const newToken = uuid();
+  kv.set(newToken, await ZKEdDSAEventTicketPCDPackage.serialize(pcd));
+  return newToken;
 }
-export function checkToken(token: string): boolean {
-  return token === CORRECT_TOKEN;
+
+export async function getTokenUser(
+  token: string
+): Promise<ZKEdDSAEventTicketPCD | undefined> {
+  const user = await kv.get<string>(token);
+
+  if (user) {
+    return await ZKEdDSAEventTicketPCDPackage.deserialize(user);
+  }
+
+  return undefined;
 }
+
 export const CORRECT_TOKEN = "token";

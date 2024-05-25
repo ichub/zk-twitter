@@ -7,7 +7,8 @@ import { Post } from "./backend";
 import { kv } from "@vercel/kv";
 
 export async function makePodTweet(
-  post: Post
+  post: Post,
+  commitment: string
 ): Promise<SerializedPCD<PCD<PODPCDClaim, PODPCDProof>>> {
   const newPOD = new PODPCD(
     uuid(),
@@ -17,7 +18,8 @@ export async function makePodTweet(
           zupass_display: "collectable",
           zupass_image_url: post.imageUrl,
           zupass_title: post.title,
-          zupass_description: post.content
+          zupass_description: post.content,
+          poster_commitment: commitment
         })
       ),
       SIGNING_KEY
