@@ -9,19 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@pcd/eddsa-pcd": "^0.6.0",
+    "@pcd/passport-crypto": "^0.11.0",
     "@pcd/passport-interface": "^0.11.0",
     "@pcd/pcd-collection": "^0.11.0",
+    "@pcd/pcd-types": "^0.11.0",
+    "@pcd/pod": "^0.1.0",
+    "@pcd/pod-pcd": "^0.1.0",
     "@pcd/zk-eddsa-event-ticket-pcd": "^0.6.0",
     "@pcd/zuauth": "^1.3.1",
     "next": "14.2.3",
     "nextjs-cors": "^2.2.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.8",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",

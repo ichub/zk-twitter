@@ -1,3 +1,4 @@
+import { getTestTweets } from "@/util/testTweet";
 import {
   ListFeedsResponseValue,
   PollFeedRequest,
@@ -31,7 +32,11 @@ async function handlePollFeed(
 ): Promise<PollFeedResponseValue> {
   return {
     actions: [
-      { type: PCDActionType.AppendToFolder, folder: FOLDER_NAME, pcds: [] }
+      {
+        type: PCDActionType.AppendToFolder,
+        folder: FOLDER_NAME,
+        pcds: await getTestTweets()
+      }
     ]
   };
 }
