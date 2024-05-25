@@ -9,9 +9,7 @@ import { useCtx } from "../AppContext";
 
 const LOGIN_CONFIG: ZuAuthArgs = {
   fieldsToReveal: {
-    revealAttendeeEmail: true,
-    revealAttendeeName: true,
-    revealEventId: true
+    revealAttendeeSemaphoreId: true
   },
   watermark: WATERMARK,
   config: ETHBERLIN04,
