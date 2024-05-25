@@ -1,8 +1,9 @@
+import { AppWrapper } from "@/frontend/components/AppWrapper";
+import { ClientOnly } from "@/frontend/components/ClientOnly";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AppWrapper } from "@/frontend/components/AppWrapper";
-import { ClientOnly } from "@/frontend/components/ClientOnly";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          inter.className
+        )}
+      >
         <ClientOnly>
           <AppWrapper>{children}</AppWrapper>
         </ClientOnly>
