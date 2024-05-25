@@ -1,1 +1,1 @@
-export const WATERMARK = 12345n;
+export const WATERMARK = BigInt(12345);

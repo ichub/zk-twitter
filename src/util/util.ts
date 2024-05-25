@@ -1,4 +1,4 @@
-export type APIResult<T> = {
+export type ZResult<T> = {
   success: true;
   data: T;
   error?: never;
@@ -8,16 +8,28 @@ export type APIResult<T> = {
   error: string;
 };
 
-export function err<T>(error: string): APIResult<T> {
+export function err<T>(error: string): ZResult<T> {
+  console.error(`err: `, error);
+
   return {
     success: false,
     error,
   };
 }
 
-export function succ<T>(t: T): APIResult<T> {
+export function succ<T>(t: T): ZResult<T> {
+  console.log(`succ: `, t);
+
   return {
     success: true,
     data: t
   };
+}
+
+export function getErrorMessage(e: unknown | Error): string {
+  if (e instanceof Error) {
+    return e.message;
+  }
+
+  return e + "";
 }
