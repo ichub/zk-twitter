@@ -1,8 +1,8 @@
 "use client";
 
-import { AuthResult, auth } from "@/app/api/api";
-import { WATERMARK } from "@/util/shared";
-import { ZResult, err, getErrorMessage } from "@/util/util";
+import { AuthResult, auth } from "@/backend/auth";
+import { WATERMARK } from "@/shared/shared";
+import { ZResult, err, getErrorMessage } from "@/shared/util";
 import { ETHBERLIN04, ZuAuthArgs, zuAuthPopup } from "@pcd/zuauth";
 import { useState } from "react";
 

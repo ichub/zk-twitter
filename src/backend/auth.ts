@@ -1,7 +1,7 @@
 "use server";
 
-import { WATERMARK } from "@/util/shared";
-import { ZResult, err, getErrorMessage, succ } from "@/util/util";
+import { WATERMARK } from "@/shared/shared";
+import { ZResult, err, getErrorMessage, succ } from "@/shared/util";
 import { PopupActionResult } from "@pcd/passport-interface";
 import { ZKEdDSAEventTicketPCD } from "@pcd/zk-eddsa-event-ticket-pcd";
 import { ETHBERLIN04 } from "@pcd/zuauth";

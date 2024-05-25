@@ -1,4 +1,4 @@
-import { SIGNING_KEY } from "@/app/env";
+import { SIGNING_KEY } from "@/backend/env";
 import { PCD, SerializedPCD } from "@pcd/pcd-types";
 import { POD, podEntriesFromSimplifiedJSON } from "@pcd/pod";
 import { PODPCD, PODPCDClaim, PODPCDPackage, PODPCDProof } from "@pcd/pod-pcd";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Login } from "@/components/login";
+import { Login } from "@/frontend/components/login";
 
 export default function Home() {
   return (
