@@ -33,6 +33,11 @@ async function handlePollFeed(
   return {
     actions: [
       {
+        type: PCDActionType.DeleteFolder,
+        folder: FOLDER_NAME,
+        recursive: false
+      },
+      {
         type: PCDActionType.AppendToFolder,
         folder: FOLDER_NAME,
         pcds: await getTestTweets()
